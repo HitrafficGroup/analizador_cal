@@ -52,7 +52,7 @@ def calcularPorcent(data,porcent,final_path,condition,cal):
     
 
     if cal == 20:
-        workbook = load_workbook('./plantillas/cal20.xlsx')
+        workbook = load_workbook('./plantillas/cal20_auditar.xlsx')
         sheet = workbook.active
         aux_init = 3
         
@@ -75,7 +75,7 @@ def calcularPorcent(data,porcent,final_path,condition,cal):
         workbook.save(final_path)
         workbook.close()
     elif cal == 30:
-        workbook = load_workbook('./plantillas/cal30.xlsx')
+        workbook = load_workbook('./plantillas/cal30_auditar.xlsx')
         sheet = workbook.active
         aux_init = 4
         for i in muestra_generada:
@@ -108,7 +108,7 @@ def calcularPorcent(data,porcent,final_path,condition,cal):
         workbook.save(final_path)
         workbook.close()
     elif cal == 40:
-        workbook = load_workbook('./plantillas/cal40.xlsx')
+        workbook = load_workbook('./plantillas/cal40_auditar.xlsx')
         sheet = workbook.active
         aux_init = 3
         for i in muestra_generada:
@@ -135,7 +135,7 @@ def calcularPorcent(data,porcent,final_path,condition,cal):
         workbook.save(final_path)
         workbook.close()
     elif cal == 50:
-        workbook = load_workbook('./plantillas/cal50.xlsx')
+        workbook = load_workbook('./plantillas/cal50_auditar.xlsx')
         sheet = workbook.active
         aux_init = 4
         for i in muestra_generada:
