@@ -1,18 +1,14 @@
 import pandas as pd
-import openpyxl
-from openpyxl.styles import Border, Side, Alignment,Font
-from openpyxl.drawing.image import Image
 from openpyxl import load_workbook
 def calcularPorcent(data,porcent,final_path,condition,cal):
 
     df = pd.DataFrame(data)
-    # procesamos el dataframe
-    valores_unicos_lista = df['YEAR'].unique().tolist()
+    valores_unicos_lista = df['year'].unique().tolist()
     meses_unicos = []
     for year in valores_unicos_lista:
-        c1 = df['YEAR'] == year
+        c1 = df['year'] == year
         datos_seleccionados = df[c1]
-        meses_unicos.append({'meses':datos_seleccionados['MES'].unique().tolist(),'year':year})
+        meses_unicos.append({'meses':datos_seleccionados['mes'].unique().tolist(),'year':year})
     longitud_meses = 0
     for lon in meses_unicos:
         longitud_meses += len(lon['meses'])
@@ -29,10 +25,10 @@ def calcularPorcent(data,porcent,final_path,condition,cal):
         total_porcent = (N_poblation *(confianza**2)*0.5*0.5)/((error**2)*(N_poblation-1)+(confianza**2)*0.5*0.5)
       
         for dic in meses_unicos:
-            c2 = df['YEAR'] == dic['year']
+            c2 = df['year'] == dic['year']
             data_frame_year = df[c2]
             for val in dic['meses']:
-                c3 = data_frame_year['MES'] == val
+                c3 = data_frame_year['mes'] == val
                 df_mes = data_frame_year[c3]
                 elementos_aleatorios = df_mes.sample(n=ctd_mes, replace=False)
                 aux = elementos_aleatorios.to_dict(orient='records')
@@ -41,10 +37,10 @@ def calcularPorcent(data,porcent,final_path,condition,cal):
         total_porcent = round(int(size)*porcent)
         ctd_mes = round(total_porcent/longitud_meses)
         for dic in meses_unicos:
-            c2 = df['YEAR'] == dic['year']
+            c2 = df['year'] == dic['year']
             data_frame_year = df[c2]
             for val in dic['meses']:
-                c3 = data_frame_year['MES'] == val
+                c3 = data_frame_year['mes'] == val
                 df_mes = data_frame_year[c3]
                 elementos_aleatorios = df_mes.sample(n=ctd_mes, replace=False)
                 aux = elementos_aleatorios.to_dict(orient='records')
@@ -57,19 +53,19 @@ def calcularPorcent(data,porcent,final_path,condition,cal):
         aux_init = 3
         
         for i in muestra_generada:
-            sheet[f'A{aux_init}'] = i['YEAR']
-            sheet[f'B{aux_init}'] = i['MES']
-            sheet[f'C{aux_init}'] = i['DIA']
-            sheet[f'D{aux_init}'] = i['Subestación / Barra']
-            sheet[f'E{aux_init}'] = i['GEO-X']
-            sheet[f'F{aux_init}'] = i['GEO-Y']
-            sheet[f'G{aux_init}'] = i['Provincia']
-            sheet[f'H{aux_init}'] = i['Cantón']
-            sheet[f'K{aux_init}'] = i['# Registros']
-            sheet[f'L{aux_init}'] = i['Fase A V']
-            sheet[f'M{aux_init}'] = i['Fase B V']
-            sheet[f'N{aux_init}'] = i['Fase C V']
-            sheet[f'T{aux_init}'] = i['OBSERVACIONES']
+            sheet[f'A{aux_init}'] = i['year']
+            sheet[f'B{aux_init}'] = i['mes']
+            sheet[f'C{aux_init}'] = i['dia']
+            sheet[f'D{aux_init}'] = i['subestacion']
+            sheet[f'E{aux_init}'] = i['geo_x']
+            sheet[f'F{aux_init}'] = i['geo_y']
+            sheet[f'G{aux_init}'] = i['provincia']
+            sheet[f'H{aux_init}'] = i['canton']
+            sheet[f'K{aux_init}'] = i['registros']
+            sheet[f'L{aux_init}'] = i['fase_av']
+            sheet[f'M{aux_init}'] = i['fase_bv']
+            sheet[f'N{aux_init}'] = i['fase_cv']
+            sheet[f'T{aux_init}'] = i['observaciones']
             aux_init += 1
         
         workbook.save(final_path)
@@ -79,31 +75,28 @@ def calcularPorcent(data,porcent,final_path,condition,cal):
         sheet = workbook.active
         aux_init = 4
         for i in muestra_generada:
-            sheet[f'A{aux_init}'] = i['YEAR']
-            sheet[f'B{aux_init}'] = i['MES']
-            sheet[f'C{aux_init}'] = i['DIA']
-            sheet[f'D{aux_init}'] = i['CODIGO']
-            sheet[f'E{aux_init}'] = i['TIPO']
-            sheet[f'F{aux_init}'] = i['SUBESTACION']
-            sheet[f'G{aux_init}'] = i['ALIMENTADOR']
-            sheet[f'H{aux_init}'] = i['NUM DE FASES']
-            sheet[f'I{aux_init}'] = i['F-F']
-            sheet[f'J{aux_init}'] = i['F-N']
-            sheet[f'L{aux_init}'] = i['N_REGISTROS']
-            sheet[f'M{aux_init}'] = i['FA_V']
-            sheet[f'N{aux_init}'] = i['FA_PST']
-            sheet[f'L{aux_init}'] = i['N_REGISTROS']
-            sheet[f'M{aux_init}'] = i['FA_V']
-            sheet[f'N{aux_init}'] = i['FA_PST']
-            sheet[f'O{aux_init}'] = i['FA_VTHD']
-            sheet[f'P{aux_init}'] = i['FC_V']
-            sheet[f'Q{aux_init}'] = i['FC_PST']
-            sheet[f'R{aux_init}'] = i['FC_VTHD']
-            sheet[f'S{aux_init}'] = i['FB_V']
-            sheet[f'T{aux_init}'] = i['FB_PST']
-            sheet[f'U{aux_init}'] = i['FB_VTHD']
-            sheet[f'V{aux_init}'] = i['DESEQUILIBRIO']
-            sheet[f'AI{aux_init}'] = i['OBSERVACIONES']
+            sheet[f'A{aux_init}'] = i['year']
+            sheet[f'B{aux_init}'] = i['mes']
+            sheet[f'C{aux_init}'] = i['dia']
+            sheet[f'D{aux_init}'] = i['codigo']
+            sheet[f'E{aux_init}'] = i['tipo']
+            sheet[f'F{aux_init}'] = i['subestacion']
+            sheet[f'G{aux_init}'] = i['alimentador']
+            sheet[f'H{aux_init}'] = i['fases']
+            sheet[f'I{aux_init}'] = i['ff']
+            sheet[f'J{aux_init}'] = i['fn']
+            sheet[f'L{aux_init}'] = i['registros']
+            sheet[f'M{aux_init}'] = i['fase_av']
+            sheet[f'N{aux_init}'] = i['fase_apst']
+            sheet[f'O{aux_init}'] = i['fase_avthd']
+            sheet[f'P{aux_init}'] = i['fase_cv']
+            sheet[f'Q{aux_init}'] = i['fase_cpst']
+            sheet[f'R{aux_init}'] = i['fase_cvthd']
+            sheet[f'S{aux_init}'] = i['fase_bv']
+            sheet[f'T{aux_init}'] = i['fase_bpst']
+            sheet[f'U{aux_init}'] = i['fase_bvthd']
+            sheet[f'V{aux_init}'] = i['desequilibrio']
+            sheet[f'AI{aux_init}'] = i['observaciones']
             aux_init += 1
         workbook.save(final_path)
         workbook.close()
@@ -112,24 +105,24 @@ def calcularPorcent(data,porcent,final_path,condition,cal):
         sheet = workbook.active
         aux_init = 3
         for i in muestra_generada:
-            sheet[f'A{aux_init}'] = i['YEAR']
-            sheet[f'B{aux_init}'] = i['MES']
-            sheet[f'C{aux_init}'] = i['DIA']
-            sheet[f'D{aux_init}'] = i['CODIGO_UNICO_NACIONAL']
-            sheet[f'E{aux_init}'] = i['TIPO']
-            sheet[f'F{aux_init}'] = i['PROVINCIA']
-            sheet[f'G{aux_init}'] = i['CANTON']
-            sheet[f'H{aux_init}'] = i['SUBESTACION']
-            sheet[f'I{aux_init}'] = i['ALIMENTADOR']
-            sheet[f'J{aux_init}'] = i['TRANSFORMADOR']
-            sheet[f'K{aux_init}'] = i['NUM_FASES']
-            sheet[f'L{aux_init}'] = i['F-F']
-            sheet[f'M{aux_init}'] = i['F-N']
-            sheet[f'O{aux_init}'] = i['N_REGISTROS']
-            sheet[f'P{aux_init}'] = i['FA_V']
-            sheet[f'Q{aux_init}'] = i['FB_V']
-            sheet[f'R{aux_init}'] = i['FC_V']
-            sheet[f'W{aux_init}'] = i['OBSERVACIONES']
+            sheet[f'A{aux_init}'] = i['year']
+            sheet[f'B{aux_init}'] = i['mes']
+            sheet[f'C{aux_init}'] = i['dia']
+            sheet[f'D{aux_init}'] = i['codigo']
+            sheet[f'E{aux_init}'] = i['tipo']
+            sheet[f'F{aux_init}'] = i['provincia']
+            sheet[f'G{aux_init}'] = i['canton']
+            sheet[f'H{aux_init}'] = i['subestacion']
+            sheet[f'I{aux_init}'] = i['alimentador']
+            sheet[f'J{aux_init}'] = i['transformador']
+            sheet[f'K{aux_init}'] = i['fases']
+            sheet[f'L{aux_init}'] = i['ff']
+            sheet[f'M{aux_init}'] = i['fn']
+            sheet[f'O{aux_init}'] = i['registros']
+            sheet[f'P{aux_init}'] = i['fase_av']
+            sheet[f'Q{aux_init}'] = i['fase_bv']
+            sheet[f'R{aux_init}'] = i['fase_cv']
+            sheet[f'W{aux_init}'] = i['observaciones']
         
             aux_init += 1
         workbook.save(final_path)
@@ -139,48 +132,33 @@ def calcularPorcent(data,porcent,final_path,condition,cal):
         sheet = workbook.active
         aux_init = 4
         for i in muestra_generada:
-            sheet[f'A{aux_init}'] = i['YEAR']
-            sheet[f'B{aux_init}'] = i['MES']
-            sheet[f'C{aux_init}'] = i['DIA']
-            sheet[f'D{aux_init}'] = i['CODIGO_UNICO_NACIONAL']
-            sheet[f'E{aux_init}'] = i['PROVINCIA']
-            sheet[f'F{aux_init}'] = i['CANTON']
-            sheet[f'G{aux_init}'] = i['SUBESTACION']
-            sheet[f'H{aux_init}'] = i['ALIMENTADOR']
-            sheet[f'I{aux_init}'] = i['F-F']
-            sheet[f'J{aux_init}'] = i['F-N']
-            sheet[f'L{aux_init}'] = i['N_REGISTROS']
-            sheet[f'M{aux_init}'] = i['FA_V']
-            sheet[f'N{aux_init}'] = i['FA_PST']
-            sheet[f'O{aux_init}'] = i['FA_VTHD']
-            sheet[f'P{aux_init}'] = i['FB_V']
-            sheet[f'Q{aux_init}'] = i['FB_PST']
-            sheet[f'R{aux_init}'] = i['FB_VTHD']
-            sheet[f'S{aux_init}'] = i['FC_V']
-            sheet[f'T{aux_init}'] = i['FC_PST']
-            sheet[f'U{aux_init}'] = i['FC_VTHD']
-            sheet[f'V{aux_init}'] = i['DESEQUILIBRIO']
-            sheet[f'AI{aux_init}'] = i['OBSERVACIONES']
-            # sheet[f'E{aux_init}'] = i['TIPO']
-            # sheet[f'F{aux_init}'] = i['PROVINCIA']
-            # sheet[f'G{aux_init}'] = i['CANTON']
-            # sheet[f'H{aux_init}'] = i['SUBESTACION']
-            # sheet[f'I{aux_init}'] = i['ALIMENTADOR']
-            # sheet[f'J{aux_init}'] = i['TRANSFORMADOR']
-            # sheet[f'K{aux_init}'] = i['NUM_FASES']
-            # sheet[f'L{aux_init}'] = i['F-F']
-            # sheet[f'M{aux_init}'] = i['F-N']
-            # sheet[f'O{aux_init}'] = i['N_REGISTROS']
-            # sheet[f'P{aux_init}'] = i['FA_V']
-            # sheet[f'Q{aux_init}'] = i['FB_V']
-            # sheet[f'R{aux_init}'] = i['FC_V']
-            # sheet[f'W{aux_init}'] = i['OBSERVACIONES']
-        
+            sheet[f'A{aux_init}'] = i['year']
+            sheet[f'B{aux_init}'] = i['mes']
+            sheet[f'C{aux_init}'] = i['dia']
+            sheet[f'D{aux_init}'] = i['codigo']
+            sheet[f'E{aux_init}'] = i['provincia']
+            sheet[f'F{aux_init}'] = i['canton']
+            sheet[f'G{aux_init}'] = i['subestacion']
+            sheet[f'H{aux_init}'] = i['alimentador']
+            sheet[f'I{aux_init}'] = i['ff']
+            sheet[f'J{aux_init}'] = i['fn']
+            sheet[f'L{aux_init}'] = i['registros']
+            sheet[f'M{aux_init}'] = i['fase_av']
+            sheet[f'N{aux_init}'] = i['fase_apst']
+            sheet[f'O{aux_init}'] = i['fase_avthd']
+            sheet[f'P{aux_init}'] = i['fase_bv']
+            sheet[f'Q{aux_init}'] = i['fase_bpst']
+            sheet[f'R{aux_init}'] = i['fase_bvthd']
+            sheet[f'S{aux_init}'] = i['fase_cv']
+            sheet[f'T{aux_init}'] = i['fase_cpst']
+            sheet[f'U{aux_init}'] = i['fase_cvthd']
+            sheet[f'V{aux_init}'] = i['desequilibrio']
+            sheet[f'AI{aux_init}'] = i['observaciones']
+
             aux_init += 1
         workbook.save(final_path)
         workbook.close()
-    #df = pd.DataFrame(muestra_generada)
-    #df.to_excel(final_path, index=False)
+
 
 
 
