@@ -174,7 +174,8 @@ def calcular020(path_source,path_final):
         sheet[f'BM{aux_init}'] = i['fc15dv']
         sheet[f'BN{aux_init}'] = i['total_c']
         sheet[f'BO{aux_init}'] = i['observaciones']
-        
+        #FILE
+        sheet[f'BP{aux_init}']=i['file']
         aux_init += 1
     workbook.save(path_final)
     workbook.close()

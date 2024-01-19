@@ -358,7 +358,7 @@ def calcular030(path_source,path_final):
         sheet[f'DR{aux_init}']=i['fb_armonico19']
         sheet[f'DU{aux_init}']=i['fb_armonico20']
         sheet[f'DX{aux_init}']=i['fb_armonico21']
-        sheet[f'DA{aux_init}']=i['fb_armonico22']
+        sheet[f'EA{aux_init}']=i['fb_armonico22']
         sheet[f'ED{aux_init}']=i['fb_armonico23']
         sheet[f'EG{aux_init}']=i['fb_armonico24']
         sheet[f'EJ{aux_init}']=i['fb_armonico25']
@@ -387,9 +387,7 @@ def calcular030(path_source,path_final):
         sheet[f'HA{aux_init}']=i['fb_armonico48']
         sheet[f'HD{aux_init}']=i['fb_armonico49']
         sheet[f'HG{aux_init}']=i['fb_armonico50']
-
         #ARMONICOS FASE C
-
         sheet[f'BT{aux_init}']=i['fc_armonico2']
         sheet[f'BW{aux_init}']=i['fc_armonico3']
         sheet[f'BZ{aux_init}']=i['fc_armonico4']
@@ -405,7 +403,7 @@ def calcular030(path_source,path_final):
         sheet[f'DD{aux_init}']=i['fc_armonico14']
         sheet[f'DG{aux_init}']=i['fc_armonico15']
         sheet[f'DJ{aux_init}']=i['fc_armonico16']
-        sheet[f'DN{aux_init}']=i['fc_armonico17']
+        sheet[f'DM{aux_init}']=i['fc_armonico17']
         sheet[f'DP{aux_init}']=i['fc_armonico18']
         sheet[f'DS{aux_init}']=i['fc_armonico19']
         sheet[f'DV{aux_init}']=i['fc_armonico20']
@@ -439,7 +437,8 @@ def calcular030(path_source,path_final):
         sheet[f'HB{aux_init}']=i['fc_armonico48']
         sheet[f'HE{aux_init}']=i['fc_armonico49']
         sheet[f'HH{aux_init}']=i['fc_armonico50']
-
+        #FILE
+        sheet[f'HI{aux_init}']=i['file']
         aux_init += 1
 
     workbook.save(path_final)
