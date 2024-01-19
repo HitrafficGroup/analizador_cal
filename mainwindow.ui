@@ -11,7 +11,13 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Analizador Cal</string>
+  </property>
+  <property name="windowIcon">
+   <iconset theme="accessories-calculator"/>
+  </property>
+  <property name="animated">
+   <bool>true</bool>
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout">
@@ -30,7 +36,7 @@
     <item>
      <widget class="QFrame" name="frame">
       <property name="styleSheet">
-       <string notr="true"/>
+       <string notr="true">background-color: rgb(255, 255, 255);</string>
       </property>
       <property name="frameShape">
        <enum>QFrame::StyledPanel</enum>
@@ -66,6 +72,28 @@
            </item>
            <item row="4" column="3">
             <widget class="QPushButton" name="btn50">
+             <property name="styleSheet">
+              <string notr="true">QPushButton{
+
+background-color: rgb(46, 204, 113 );
+border-radius:3px;
+color:white;
+height:25px;
+}
+
+
+QPushButton:hover{
+background-color: rgb(171, 235, 198);
+border-radius:3px;
+color:white
+}
+
+QPushButton:pressed{
+background-color: rgb(46, 204, 113 );
+border-radius:3px;
+color:white
+}</string>
+             </property>
              <property name="text">
               <string>CARPETA CAL50</string>
              </property>
@@ -73,6 +101,28 @@
            </item>
            <item row="7" column="1" colspan="3">
             <widget class="QPushButton" name="process">
+             <property name="styleSheet">
+              <string notr="true">QPushButton{
+
+background-color: rgb(41, 128, 185 );
+border-radius:3px;
+color:white;
+height:25px;
+}
+
+
+QPushButton:hover{
+background-color: rgb(93, 173, 226);
+border-radius:3px;
+color:white
+}
+
+QPushButton:pressed{
+background-color: rgb(40, 116, 166 );
+border-radius:3px;
+color:white
+}</string>
+             </property>
              <property name="text">
               <string>GENERAR DB</string>
              </property>
@@ -80,6 +130,28 @@
            </item>
            <item row="2" column="3">
             <widget class="QPushButton" name="btn30">
+             <property name="styleSheet">
+              <string notr="true">QPushButton{
+
+background-color: rgb(46, 204, 113 );
+border-radius:3px;
+color:white;
+height:25px;
+}
+
+
+QPushButton:hover{
+background-color: rgb(171, 235, 198);
+border-radius:3px;
+color:white
+}
+
+QPushButton:pressed{
+background-color: rgb(46, 204, 113 );
+border-radius:3px;
+color:white
+}</string>
+             </property>
              <property name="text">
               <string>CARPETA CAL30</string>
              </property>
@@ -94,6 +166,28 @@
            </item>
            <item row="3" column="3">
             <widget class="QPushButton" name="btn40">
+             <property name="styleSheet">
+              <string notr="true">QPushButton{
+
+background-color: rgb(46, 204, 113 );
+border-radius:3px;
+color:white;
+height:25px;
+}
+
+
+QPushButton:hover{
+background-color: rgb(171, 235, 198);
+border-radius:3px;
+color:white
+}
+
+QPushButton:pressed{
+background-color: rgb(46, 204, 113 );
+border-radius:3px;
+color:white
+}</string>
+             </property>
              <property name="text">
               <string>CARPETA CAL40</string>
              </property>
@@ -123,6 +217,9 @@
                  <widget class="QPushButton" name="btnporcent">
                   <property name="enabled">
                    <bool>false</bool>
+                  </property>
+                  <property name="styleSheet">
+                   <string notr="true"/>
                   </property>
                   <property name="text">
                    <string>GENERAR PORCENTAJE</string>
@@ -180,6 +277,28 @@
                <width>100</width>
                <height>16777215</height>
               </size>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton{
+
+background-color: rgb(46, 204, 113 );
+border-radius:3px;
+color:white;
+height:25px;
+}
+
+
+QPushButton:hover{
+background-color: rgb(171, 235, 198);
+border-radius:3px;
+color:white
+}
+
+QPushButton:pressed{
+background-color: rgb(46, 204, 113 );
+border-radius:3px;
+color:white
+}</string>
              </property>
              <property name="text">
               <string>CARPETA CAL20</string>
