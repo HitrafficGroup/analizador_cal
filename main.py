@@ -86,6 +86,7 @@ def procesarDb():
         options = QFileDialog.Options()
         file_name, _ = QFileDialog.getSaveFileName(None, "Guardar Excel", f"{name_file}.xlsx", "Excel Files (*.xlsx);;All Files (*)", options=options)
         data_cal50 = calcular50(path_cal50,file_name)
+        
     window.btnporcent.setEnabled(True)
 def seleccionarExcel():
     global path_consolided
@@ -106,8 +107,8 @@ def generarPorcentajedeMuestra():
     option30 = window.radio30.isChecked()
     option40 = window.radio40.isChecked()
     option50 = window.radio50.isChecked()
-  
     name_file = f'porcentaje {porcent}% {date.day}-{date.month}-{date.year} {date.hour}-{date.minute}-{date.second}'
+
     if option20:
         option_cal = 20
         data_analisys = data_cal20
@@ -187,12 +188,12 @@ if __name__ == "__main__":
         sys.exit(-1)
     loader = QUiLoader()
     window = loader.load(ui_file)
+
     window.btn20.clicked.connect(lambda: selectPath(1))
     window.btn30.clicked.connect(lambda: selectPath(2))
     window.btn40.clicked.connect(lambda: selectPath(3))
     window.btn50.clicked.connect(lambda: selectPath(4))
     window.process.clicked.connect(lambda: procesarDb())
-   
     window.btnporcent.clicked.connect(lambda: generarPorcentajedeMuestra())
     window.radio20.clicked.connect(lambda: detectarOpcion(1))
     window.radio30.clicked.connect(lambda: detectarOpcion(2))
